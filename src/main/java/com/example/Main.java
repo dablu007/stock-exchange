@@ -3,6 +3,7 @@ package com.example;
 import com.example.service.DataReader;
 import com.example.service.IOrderExecutor;
 import com.example.service.OrderService;
+import com.example.service.WorkerThread;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -13,10 +14,10 @@ public class Main {
     	
 	    DataReader dataReader = DataReader.getInstance();
 	    dataReader.readFile(filepath);
+		Thread workerThread = new WorkerThread();
+		workerThread.start();
 	    dataReader.createAndExecuteStockOrders();
-		IOrderExecutor orderExecutor = new OrderService();
-	    while (true){
-	    	orderExecutor.execute();
-		}
+	    
+		
     }
 }
