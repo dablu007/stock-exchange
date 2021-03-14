@@ -43,8 +43,9 @@ public class DataReader {
 	}
 	
 	/* Storing the buyer and seller order in
-	 * seperate queues to process */
-	public void createOrders(){
+	 * seperate queue to process and executing the order by buyer if seller exist
+	 *  */
+	public void createAndExecuteStockOrders(){
 		IOrderExecutor orderExecutor = new OrderService();
 		for (String data :this.inputFileLines) {
 			String[] splittedData = data.split(SPACE);
@@ -54,11 +55,8 @@ public class DataReader {
 			String stockType = splittedData[3].toUpperCase();
 			double orderPrice;
 			orderPrice = Double.parseDouble(splittedData[4]);
-			
 			int quantity;
 			quantity = Integer.parseInt(splittedData[5]);
-			
-			
 			String[] timeSplitted = timeData.split(COLON);
 			int hour = Integer.parseInt(timeSplitted[0]) * MIN_CONSTANT;
 			int min = Integer.parseInt(timeSplitted[1]);

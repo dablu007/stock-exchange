@@ -6,7 +6,7 @@ public class Main {
     	
 	    DataReader dataReader = DataReader.getInstance();
 	    dataReader.readFile(filepath);
-	    dataReader.createOrders();
+	    dataReader.createAndExecuteStockOrders();
 		IOrderExecutor orderExecutor = new OrderService();
 	    while (true){
 	    	orderExecutor.execute();
