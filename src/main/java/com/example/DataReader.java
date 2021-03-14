@@ -48,30 +48,30 @@ public class DataReader {
 		IOrderExecutor orderExecutor = new OrderService();
 		for (String data :this.inputFileLines) {
 			String[] splittedData = data.split(SPACE);
-				String orderId = splittedData[0];
-				String timeData = splittedData[1];
-				String name = splittedData[2];
-				String stockType = splittedData[3].toUpperCase();
-				double orderPrice;
-				orderPrice = Double.parseDouble(splittedData[4]);
-				
-				int quantity;
-				quantity = Integer.parseInt(splittedData[5]);
-				
-					
-				String[] timeSplitted = timeData.split(COLON);
-				int hour = Integer.parseInt(timeSplitted[0]) * MIN_CONSTANT;
-				int min = Integer.parseInt(timeSplitted[1]);
-				Date date = new Date(new Date().getTime() + hour + min);
-				StockOrder order = StockOrder.builder().orderId(orderId).timestamp(date.getTime())
-						.stock(name).type(StockType.valueOf(stockType)).price(orderPrice).quantity(quantity).build();
-				if (stockType.equalsIgnoreCase("buy")){
-					buyerOrders.add(order);
-				}
-				else {
-					sellerOrders.add(order);
-				}
-				orderExecutor.execute();
+			String orderId = splittedData[0];
+			String timeData = splittedData[1];
+			String name = splittedData[2];
+			String stockType = splittedData[3].toUpperCase();
+			double orderPrice;
+			orderPrice = Double.parseDouble(splittedData[4]);
+			
+			int quantity;
+			quantity = Integer.parseInt(splittedData[5]);
+			
+			
+			String[] timeSplitted = timeData.split(COLON);
+			int hour = Integer.parseInt(timeSplitted[0]) * MIN_CONSTANT;
+			int min = Integer.parseInt(timeSplitted[1]);
+			Date date = new Date(new Date().getTime() + hour + min);
+			StockOrder order = StockOrder.builder().orderId(orderId).timestamp(date.getTime())
+					.stock(name).type(StockType.valueOf(stockType)).price(orderPrice).quantity(quantity).build();
+			if (stockType.equalsIgnoreCase(BUY)){
+				buyerOrders.add(order);
 			}
+			else {
+				sellerOrders.add(order);
+			}
+			orderExecutor.execute();
+		}
 	}
 }
