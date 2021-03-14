@@ -1,4 +1,6 @@
-package com.example;
+package com.example.model;
+
+import com.example.model.StockOrder;
 
 import java.util.Comparator;
 

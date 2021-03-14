@@ -1,5 +1,9 @@
-package com.example;
+package com.example.service;
 
+import com.example.enums.StockType;
+import com.example.model.BuyingPriceComparator;
+import com.example.model.SellingPriceComparator;
+import com.example.model.StockOrder;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -8,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-import static com.example.Constants.*;
+import static com.example.constants.Constants.*;
 
 @Getter
 public class DataReader {

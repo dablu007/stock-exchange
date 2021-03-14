@@ -1,4 +1,4 @@
-package com.example;
+package com.example.constants;
 
 public interface Constants {
 	String BUY = "buy";

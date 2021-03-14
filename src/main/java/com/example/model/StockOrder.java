@@ -1,5 +1,6 @@
-package com.example;
+package com.example.model;
 
+import com.example.enums.StockType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
