@@ -1,7 +1,5 @@
 package com.example.model;
 
-import com.example.model.StockOrder;
-
 import java.util.Comparator;
 
 public class BuyingPriceComparator implements Comparator<StockOrder> {

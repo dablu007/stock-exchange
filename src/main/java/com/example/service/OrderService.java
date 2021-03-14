@@ -1,7 +1,6 @@
 package com.example.service;
 
 import com.example.model.StockOrder;
-import lombok.Synchronized;
 
 import java.util.PriorityQueue;
 
