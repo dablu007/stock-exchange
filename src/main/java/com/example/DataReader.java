@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+import static com.example.Constants.*;
+
 @Getter
 public class DataReader {
 	private PriorityQueue<StockOrder> buyerOrders;
@@ -45,9 +47,7 @@ public class DataReader {
 	public void createOrders(){
 		IOrderExecutor orderExecutor = new OrderService();
 		for (String data :this.inputFileLines) {
-			String[] splittedData = data.split(" ");
-//			if (splittedData[3].equalsIgnoreCase(String.valueOf(StockType.SELL))){
-				
+			String[] splittedData = data.split(SPACE);
 				String orderId = splittedData[0];
 				String timeData = splittedData[1];
 				String name = splittedData[2];
@@ -59,8 +59,8 @@ public class DataReader {
 				quantity = Integer.parseInt(splittedData[5]);
 				
 					
-				String[] timeSplitted = timeData.split(":");
-				int hour = Integer.parseInt(timeSplitted[0]) * 60;
+				String[] timeSplitted = timeData.split(COLON);
+				int hour = Integer.parseInt(timeSplitted[0]) * MIN_CONSTANT;
 				int min = Integer.parseInt(timeSplitted[1]);
 				Date date = new Date(new Date().getTime() + hour + min);
 				StockOrder order = StockOrder.builder().orderId(orderId).timestamp(date.getTime())
@@ -73,6 +73,5 @@ public class DataReader {
 				}
 				orderExecutor.execute();
 			}
-//		}
 	}
 }
